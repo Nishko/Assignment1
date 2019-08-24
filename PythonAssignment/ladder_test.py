@@ -13,6 +13,19 @@ def build(pattern, words, seen, list):
   return [word for word in words
                  if re.search(pattern, word) and word not in seen.keys() and
                     word not in list]
+#function determines if a users input is valid  
+def invalid_input(word):
+    for c in word:
+        if c.isdigit():
+            print("Cannot input integers")
+            return True
+    if len(word) <= 1:
+        print("Cannot input single characters")
+        return True
+    return False
+    
+
+            
 
 def find(word, words, seen, target, path):
   list = []
@@ -38,16 +51,8 @@ fname = input("Enter dictionary name: ")
 file = open(fname)
 lines = file.readlines()
 while True:
-#user will enter a start word
   start = input("Enter start word:")
-#if the length of the start word is less than or equal to 1
-#it will print that you cannot input a single character
-  if len(start) <= 1:
-     print("Cannot input single characters")
-     break
-#if the input is an integer it will print cannot input integers
-  if start.isdigit():
-     print("Cannot input integers")
+  if invalid_input(start):
      break
   words = []
   for line in lines:
@@ -55,15 +60,8 @@ while True:
     if len(word) == len(start):
       words.append(word)
   target = input("Enter target word:")
-#if the length of the target word is less than or equal to 1
-#it will print that you cannot input a single character
-  if len(target) <= 1:
-     print("Cannot input single characters")
-     break
-#if the input is an integer it will print cannot input integers
-  if target.isdigit():
-     print("Cannot input integers")
-  break
+  if invalid_input(target):
+      break
 
 count = 0
 path = [start]
