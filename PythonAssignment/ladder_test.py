@@ -13,20 +13,19 @@ def build(pattern, words, seen, list):
   return [word for word in words
                  if re.search(pattern, word) and word not in seen.keys() and
                     word not in list]
-#function determines if a users input is valid  
+
+#function determines if a users input is valid if it is not valid
+#function prints "Invalid Input"
 def invalid_input(word):
     for c in word:
         if c.isdigit():
-            print("Cannot input integers")
+            print("Invalid Input")
             return True
     if len(word) <= 1:
-        print("Cannot input single characters")
+        print("Invalid Input")
         return True
     return False
     
-
-            
-
 def find(word, words, seen, target, path):
   list = []
   for i in range(len(word)):
@@ -48,8 +47,11 @@ def find(word, words, seen, target, path):
 
 #user will enter a directory name
 fname = input("Enter dictionary name: ")
-file = open(fname)
-lines = file.readlines()
+#file = open(fname)
+#lines = file.readlines()
+lines = []
+with open(fname) as file: 
+    lines = file.readlines()
 while True:
   start = input("Enter start word:")
   if invalid_input(start):
@@ -62,6 +64,7 @@ while True:
   target = input("Enter target word:")
   if invalid_input(target):
       break
+  break
 
 count = 0
 path = [start]
