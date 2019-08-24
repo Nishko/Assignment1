@@ -7,8 +7,10 @@ Created on Wed Aug 21 15:54:49 2019
 
 import re
 def same(item, target):
-  return len([c for (c, t) in zip(item, target) if c == t])
+    return sum(c == t for c, t in zip(item,target))
+  #return len([c for (c, t) in zip(item, target) if c == t])
 
+#
 def build(pattern, words, seen, list):
   return [word for word in words
                  if re.search(pattern, word) and word not in seen.keys() and
@@ -47,8 +49,6 @@ def find(word, words, seen, target, path):
 
 #user will enter a directory name
 fname = input("Enter dictionary name: ")
-#file = open(fname)
-#lines = file.readlines()
 lines = []
 with open(fname) as file: 
     lines = file.readlines()
