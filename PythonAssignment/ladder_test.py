@@ -49,7 +49,9 @@ def find(word, words, seen, target, path):
 
 #user will enter a directory name
 fname = input("Enter dictionary name: ")
+#set lines to an empty list
 lines = []
+#open the file so that the program can access it
 with open(fname) as file: 
     lines = file.readlines()
 while True:
