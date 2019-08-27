@@ -4,7 +4,7 @@ Created on Wed Aug 21 15:54:49 2019
 
 @author: Rowan
 """
-
+import string
 import re
 def same(item, target):
     return sum(c == t for c, t in zip(item,target))
@@ -23,10 +23,12 @@ def invalid_input(word):
         if c.isdigit():
             print("Invalid Input")
             return True
+    if has_punctuation(word):
+        print("Invalid Input")
+        return True
     if len(word) <= 1:
         print("Invalid Input")
-        return 
-    #need to write some code to stop people putting in punctuation
+        return True
     return False
     
 def find(word, words, seen, target, path):
@@ -47,6 +49,16 @@ def find(word, words, seen, target, path):
     if find(item, words, seen, target, path):
       return True
     path.pop()
+
+#function determines if the user input has punctuation in it
+def has_punctuation(s):
+    for c in s:
+        for p in string.punctuation:
+            if p == c:
+                return True
+    return False
+                
+        
 
 #user will enter a directory name
 fname = input("Enter dictionary name: ")
