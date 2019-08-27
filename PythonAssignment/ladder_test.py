@@ -8,9 +8,9 @@ Created on Wed Aug 21 15:54:49 2019
 import re
 def same(item, target):
     return sum(c == t for c, t in zip(item,target))
-  #return len([c for (c, t) in zip(item, target) if c == t])
+#return len([c for (c, t) in zip(item, target) if c == t])
 
-#
+
 def build(pattern, words, seen, list):
   return [word for word in words
                  if re.search(pattern, word) and word not in seen.keys() and
@@ -25,7 +25,8 @@ def invalid_input(word):
             return True
     if len(word) <= 1:
         print("Invalid Input")
-        return True
+        return 
+    #need to write some code to stop people putting in punctuation
     return False
     
 def find(word, words, seen, target, path):
@@ -56,6 +57,7 @@ with open(fname) as file:
     lines = file.readlines()
 while True:
   start = input("Enter start word:")
+#call to function defined at the start
   if invalid_input(start):
      break
   words = []
@@ -64,6 +66,7 @@ while True:
     if len(word) == len(start):
       words.append(word)
   target = input("Enter target word:")
+#call to function defined at the start
   if invalid_input(target):
       break
   break
